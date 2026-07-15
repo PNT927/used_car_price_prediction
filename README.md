@@ -39,20 +39,49 @@ python app/main.py
 ### 3. Open in browser
 http://127.0.0.1:5000/
 
-Usage
-Enter vehicle details such as mileage, year, fuel type, and transmission
-Submit the form
-View the predicted price and classification result:
-Underpriced
-Fairly Priced
-Overpriced
-Dataset
+## Usage
 
-The project uses publicly available used car datasets, including a UK-specific dataset to better reflect real-world market conditions. The data was cleaned and preprocessed to remove inconsistencies and ensure suitability for modelling.
+1. Enter vehicle details such as mileage, year, fuel type, transmission, make, and model.
+2. Enter the listed price for comparison.
+3. Submit the form.
+4. View the predicted fair price and classification:
+   - Underpriced
+   - Fairly Priced
+   - Overpriced
 
+## Dataset
 
+The project uses publicly available used car datasets, including a UK-specific dataset to better reflect real-world market conditions. The data was cleaned and preprocessed to remove missing values, inconsistent formats, and unsuitable records before modelling.
 
+## Model
 
-## Philip Tagoe Jr
-### Final Year Computer Science Project
+Multiple Linear Regression was used to estimate used car prices based on features including year, mileage, fuel type, transmission, make, and model.
+
+The final UK model achieved:
+
+- Mean Absolute Error: approximately £1,301
+- R² score: approximately 0.793
+
+Residual analysis was used to compare the predicted price with the listed price and classify each listing as underpriced, fairly priced, or overpriced.
+
+## Limitations
+
+- Vehicle condition, accident history, service history, and location are not fully represented.
+- The system uses static datasets rather than live marketplace data.
+- Linear Regression may not capture every complex or non-linear relationship.
+- Predictions should be treated as estimates rather than guaranteed market values.
+
+## Future Work
+
+- Compare Random Forest and Gradient Boosting models
+- Add real-time marketplace data collection
+- Introduce regional price analysis
+- Develop vehicle recommendation features
+- Add interactive dashboards
+- Improve anomaly detection methods
+
+## Author
+
+Philip Tagoe Jr  
+Final-Year BSc Computer Science Project  
 Candidate Number: 267109
