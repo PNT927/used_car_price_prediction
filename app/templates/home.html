@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Used Car Price Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Used Car Price Predictor</h1>
+
+    <form action="/predict" method="post">
+        <label for="year">Registration Year</label>
+        <input type="number" name="year" required>
+
+        <label for="mileage">Mileage</label>
+        <input type="number" name="mileage" required>
+
+        <label for="actual_price">Actual Listed Price (£)</label>
+        <input type="number" name="actual_price" required>
+
+        <label for="make">Make</label>
+        <select name="make" id="make" required onchange="updateModels()">
+            <option value="">Select make</option>
+            {% for make in makes %}
+                <option value="{{ make }}">{{ make }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="model">Model</label>
+        <select name="model" id="model" required onchange="updateFuelAndTransmission()">
+            <option value="">Select model</option>
+        </select>
+<!--        <label for="model">Model</label>-->
+<!--        <select name="model" id="model" required>-->
+<!--            <option value="">Select model</option>-->
+<!--        </select>-->
+
+        <label for="fuel">Fuel Type</label>
+        <select name="fuel" id="fuel" required>
+            <option value="">Select fuel type</option>
+        </select>
+<!--        <select name="fuel" required>-->
+<!--            <option value="Petrol">Petrol</option>-->
+<!--            <option value="Diesel">Diesel</option>-->
+<!--            <option value="Hybrid">Hybrid</option>-->
+<!--            <option value="Electric">Electric</option>-->
+<!--            <option value="Petrol Plug-in Hybrid">Petrol Plug-in Hybrid</option>-->
+<!--            <option value="Diesel Hybrid">Diesel Hybrid</option>-->
+<!--        </select>-->
+
+        <label for="transmission">Gearbox</label>
+        <select name="transmission" id="transmission" required>
+            <option value="">Select gearbox</option>
+        </select>
+<!--        <select name="transmission" required>-->
+<!--            <option value="Manual">Manual</option>-->
+<!--            <option value="Automatic">Automatic</option>-->
+<!--            <option value="Semi-Auto">Semi-Auto</option>-->
+<!--        </select>-->
+
+        <button type="submit">Predict Price</button>
+    </form>
+
+    <script>
+    const makeModelMap = {{ make_model_map | tojson }};
+    const validOptionsMap = {{ valid_options_map | tojson }};
+
+    function updateModels() {
+        const makeSelect = document.getElementById("make");
+        const modelSelect = document.getElementById("model");
+        const fuelSelect = document.getElementById("fuel");
+        const transmissionSelect = document.getElementById("transmission");
+
+        const selectedMake = makeSelect.value;
+
+        modelSelect.innerHTML = '<option value="">Select model</option>';
+        fuelSelect.innerHTML = '<option value="">Select fuel type</option>';
+        transmissionSelect.innerHTML = '<option value="">Select gearbox</option>';
+
+        if (selectedMake && makeModelMap[selectedMake]) {
+            makeModelMap[selectedMake].forEach(function(model) {
+                const option = document.createElement("option");
+                option.value = model;
+                option.text = model;
+                modelSelect.appendChild(option);
+            });
+        }
+    }
+
+    function updateFuelAndTransmission() {
+        const makeSelect = document.getElementById("make");
+        const modelSelect = document.getElementById("model");
+        const fuelSelect = document.getElementById("fuel");
+        const transmissionSelect = document.getElementById("transmission");
+
+        const selectedMake = makeSelect.value;
+        const selectedModel = modelSelect.value;
+
+        fuelSelect.innerHTML = '<option value="">Select fuel type</option>';
+        transmissionSelect.innerHTML = '<option value="">Select gearbox</option>';
+
+        if (
+            selectedMake &&
+            selectedModel &&
+            validOptionsMap[selectedMake] &&
+            validOptionsMap[selectedMake][selectedModel]
+        ) {
+            const fuels = validOptionsMap[selectedMake][selectedModel]["fuels"];
+            const transmissions = validOptionsMap[selectedMake][selectedModel]["transmissions"];
+
+            fuels.forEach(function(fuel) {
+                const option = document.createElement("option");
+                option.value = fuel;
+                option.text = fuel;
+                fuelSelect.appendChild(option);
+            });
+
+            transmissions.forEach(function(transmission) {
+                const option = document.createElement("option");
+                option.value = transmission;
+                option.text = transmission;
+                transmissionSelect.appendChild(option);
+            });
+        }
+    }
+</script>
+
+<!--    <script>-->
+<!--        const makeModelMap = {{ make_model_map | tojson }};-->
+
+<!--        function updateModels() {-->
+<!--            const makeSelect = document.getElementById("make");-->
+<!--            const modelSelect = document.getElementById("model");-->
+<!--            const selectedMake = makeSelect.value;-->
+
+<!--            modelSelect.innerHTML = '<option value="">Select model</option>';-->
+
+<!--            if (selectedMake && makeModelMap[selectedMake]) {-->
+<!--                makeModelMap[selectedMake].forEach(function(model) {-->
+<!--                    const option = document.createElement("option");-->
+<!--                    option.value = model;-->
+<!--                    option.text = model;-->
+<!--                    modelSelect.appendChild(option);-->
+<!--                });-->
+<!--            }-->
+<!--        }-->
+<!--    </script>-->
+</body>
+</html>

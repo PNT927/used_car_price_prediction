@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detailed Insights</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Detailed Model Insights</h1>
+
+<div class="card">
+
+    <div class="section">
+        <p><span class="label">Car:</span> {{ result.year }} {{ result.make }} {{ result.car_model }}</p>
+        <p><span class="label">Mileage:</span> {{ result.mileage }} miles</p>
+        <p><span class="label">Fuel:</span> {{ result.fuel }}</p>
+        <p><span class="label">Transmission:</span> {{ result.transmission }}</p>
+
+        <p><span class="label">Predicted Price:</span> £{{ result.prediction }}</p>
+        <p><span class="label">Actual Price:</span> £{{ result.actual_price }}</p>
+        <p><span class="label">Residual (Error):</span> £{{ result.residual }}</p>
+        <p><span class="label">Anomaly Status:</span> {{ result.anomaly }}</p>
+        <p><span class="label">Threshold Used:</span> £{{ result.threshold }}</p>
+    </div>
+
+    <div class="section">
+        <h3>What does this mean?</h3>
+        <p>
+            The residual represents the difference between the actual price and the model’s prediction.
+            A positive value indicates the car is priced higher than expected, while a negative value indicates it is priced lower.
+        </p>
+    </div>
+
+    <div class="section">
+        <h3>Model Explanation</h3>
+        <p>
+            This prediction was generated using a linear regression model trained on historical UK car data.
+            The model considers features such as year, mileage, fuel type, transmission, make, and model.
+        </p>
+    </div>
+
+    <div class="section">
+        <h3>Anomaly Detection</h3>
+        <p>
+            A threshold based on the standard deviation of residuals is used to classify whether a listing is
+            underpriced, fairly priced, or overpriced.
+        </p>
+    </div>
+
+    <a href="/">Back to Home</a>
+
+</div>
+
+</body>
+</html>

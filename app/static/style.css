@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+label {
+    font-weight: bold;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #222;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+/*result*/
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10spx;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.status {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: white;
+    background: #222;
+    padding: 10px 16px;
+    border-radius: 6px;
+}
+
+a:hover {
+    background: #444;
+}
+.section {
+    margin-top: 20px;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.status {
+    font-size: 1.3em;
+    margin-top: 10px;
+}
+
+.text-danger {
+    color: red;
+}
+
+.text-success {
+    color: green;
+}
+
+.text-secondary {
+    color: grey;
+}

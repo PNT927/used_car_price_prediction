@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Prediction Result</h1>
+
+    <div class="card">
+        <p><strong>Estimated fair price:</strong> £{{ prediction }}</p>
+        <p><strong>Actual listed price:</strong> £{{ actual_price }}</p>
+        <p><strong>Price difference:</strong> £{{ abs_difference }} {{ price_direction }} the estimate</p>
+        <p class="status
+            {% if anomaly == 'Overpriced' %}
+                text-danger
+            {% elif anomaly == 'Underpriced' %}
+                text-success
+            {% else %}
+                text-secondary
+            {% endif %}">
+            <strong>This car looks {{ anomaly | lower }}</strong>
+        </p>
+
+        <h3>Explanation</h3>
+        <ul>
+            {% for point in explanation_points %}
+                <li>{{ point }}</li>
+            {% endfor %}
+        </ul>
+
+        <a href="/insights">View Detailed Insights</a>
+        <a href="/">Try another car</a>
+    </div>
+</body>
+</html>

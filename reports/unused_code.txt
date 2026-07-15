@@ -1,0 +1,74 @@
+# ---------------- 16/3 ------------------
+# Define threshold
+# threshold = 200000  #200k difference
+# -------------- 17/3 ----------------
+# Calculate dynamic threshold using standard deviation
+# ------ 27/3 ----------------
+# model was weak because we only used features X = df[['year', 'km_driven']]
+# R^2 had a score of 0.17 and MAE was relatively high
+# ----------- 30/3 -----------
+# We convert the categorical variables like fuel, transmission etc into numerical format
+# to improve model performance using ONE HOT ENCODING
+
+
+# Split the data
+# Random seed is used so the train/test split is reproducible.
+# This means the same rows are used for training and testing each time the program runs.
+
+
+Removed summary and confidence text in result.html
+These were removed because the result page already shows the main required information:
+- estimated price
+- actual price
+- price difference
+- anomaly status
+- explanation points
+
+    <p><strong>Summary:</strong> {{ summary_message }}</p>
+    <p><strong>Confidence:</strong> {{ confidence_text }}</p>
+
+This was removed beause extra messages were not essential and made the interface more complex than necessary.
+
+
+Old model dropdown in home.html
+This was removed because the model dropdown is now dynamically updated based on the selected make.
+<label for="model">Model</label>
+<select name="model" id="model" required>
+    <option value="">Select model</option>
+</select>
+
+
+Old fuel dropdown in home.html
+This was removed because fuel options are now filtered based on the selected make and model.
+This helps prevent invalid combinations, such as a car model being paired with a fuel type that does not exist in the dataset.
+
+<select name="fuel" required>
+    <option value="Petrol">Petrol</option>
+    <option value="Diesel">Diesel</option>
+    <option value="Hybrid">Hybrid</option>
+    <option value="Electric">Electric</option>
+    <option value="Petrol Plug-in Hybrid">Petrol Plug-in Hybrid</option>
+    <option value="Diesel Hybrid">Diesel Hybrid</option>
+</select>
+
+
+
+Old transmission dropdown in home.html
+This was removed because gearbox options are now filtered dynamically using the dataset.
+This improves input validity and prevents unrealistic combinations.
+
+<select name="transmission" required>
+    <option value="Manual">Manual</option>
+    <option value="Automatic">Automatic</option>
+    <option value="Semi-Auto">Semi-Auto</option>
+</select>
+
+
+
+Old JavaScript model update script
+This was removed because it only updated the model dropdown.
+The current version updates model, fuel type, and gearbox options.
+
+Old purpose was to Select make and Update model dropdown only
+
+It was removed because it did not restrict fuel or transmission options.
