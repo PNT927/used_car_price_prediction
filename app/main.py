@@ -118,7 +118,7 @@ def predict():
         "model": car_model
     }])
 
-    input_data = pd.get_dummies(input_data, drop_first=True)
+    input_data = pd.get_dummies(input_data, drop_first=False)
     input_data = input_data.reindex(columns=model_columns, fill_value=0)
 
     prediction = model.predict(input_data)[0]
