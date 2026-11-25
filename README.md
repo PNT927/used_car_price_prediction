@@ -4,7 +4,7 @@
 
 Built as my final-year BSc Computer Science & Artificial Intelligence project, this application combines data preparation, regression modelling and a Flask interface to help users assess whether a used-car listing is priced close to a model-generated estimate.
 
-> **Project status:** Completed university project, with a subsequent correction to categorical encoding in the web prediction flow. This is an educational prototype, not a professional vehicle valuation service.
+**Completed university project, with a subsequent correction to categorical encoding in the web prediction flow. This is an educational prototype, not a professional vehicle valuation service.*
 
 ## Features
 
